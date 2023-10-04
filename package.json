@@ -6,9 +6,9 @@
   "version": "1.0.0",
   "description": "Web API with NOde.js",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "test"
+    "test": "node ./src/index.js",
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
