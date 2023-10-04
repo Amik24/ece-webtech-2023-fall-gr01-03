@@ -7,13 +7,11 @@ const PORT = 3000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Use your routes
+// Use the routes
 app.use('/articles', articlesRoutes);
-//... and similarly for comments
 
-// Use your routes
+
 app.use('/comments', commentsRoutes);
-//... and similarly for comments
 
 
 app.listen(PORT, () => {
