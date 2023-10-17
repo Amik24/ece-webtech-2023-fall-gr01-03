@@ -1,15 +1,15 @@
 export const db = [{
-  slug: 'velit-eros',
-  title: 'Ut velit eros',
-  message: 'Vivamus ullamcorper arcu at odio iaculis fermentum. Sed dictum diam nunc, tempus venenatis orci dignissim in.'
+  slug: 'article-1',
+  title: 'Article 1 (idk)',
+  message: 'Thats a cool article this one'
 }, {
-  slug: 'ultricies-lacus',
-  title: 'Et ultricies lacus pellentesque vel',
-  message: 'Vehicula non lacus nec, fermentum interdum elit. Morbi porttitor tincidunt augue'
+  slug: 'article-2',
+  title: 'Article 2 (idkv2)',
+  message: 'This one also is a cool one'
 }, {
-  slug: 'lacus-mauris',
-  title: 'Nam quis lacus a mauris',
-  message: 'Phasellus scelerisque condimentum finibus. Proin facilisis nisi eu finibus feugiat. Nam feugiat malesuada odio, sed pulvinar leo interdum eu. Cras at volutpat nibh, malesuada iaculis leo.'
+  slug: 'article-3',
+  title: 'Article 3 (idkv3)',
+  message: 'Nah not this one, isnt as good as the last one'
 }]
 
 export default function handler(req, res) {

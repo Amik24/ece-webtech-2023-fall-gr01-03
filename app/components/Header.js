@@ -5,11 +5,10 @@ import Image from 'next/image'
 
 export default function Header(){
   return (
-    <header className="bg-white text-black p-8 flex"
-    >
+    <header className="sticky top-0 z-50 bg-white text-black p-8 flex">
       <div className="flex-grow">
         <Link href={`/`}>
-          <Image src="/Users/clement/Desktop/cours2a/Webtech/ece-webtech-2023-fall-gr01-03/app/components/ECE_LOGO_2021_web.png" alt="ECE Logo" width={75} height={25} />
+          <Image src="/ECE_LOGO_2021_web.png" alt="ECE Logo" width={150} height={50} />
           <span>
             Web technologies
           </span>

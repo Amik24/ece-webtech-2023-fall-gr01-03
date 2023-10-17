@@ -24,7 +24,7 @@ export default function Page() {
       <h1 className="wt-title">
         Web technologies articles
       </h1>
-      <p className='italic font-bold'>This page fetch data from the client side, not good for SEO.</p>
+      <p className='italic font-bold'>Supposed to get the articles in url or all db if nothing specified</p>
       <ul className='italic font-bold'>
         {articles.map( article => (
           <li key={article.slug}>

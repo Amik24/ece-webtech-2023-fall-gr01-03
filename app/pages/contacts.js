@@ -15,31 +15,31 @@ export default function Page() {
         Contact
       </h1>
       <form className="block">
-        <div>
-          <label>
+        <div className="flex items-center mb-4">
+          <label className="w-1/4" htmlFor="lastname">
             <span>First name</span>
             <input type="text" name="firstname" />
           </label>
         </div>
-        <div>
-          <label>
+        <div className="flex items-center mb-4">
+          <label className="w-1/4" htmlFor="lastname">
             <span>Last name</span>
             <input type="text" name="lastname" />
           </label>
         </div>
-        <div>
-          <label>
+        <div className="flex items-center mb-4">
+          <label className="w-1/4" htmlFor="lastname">
             <span>Email</span>
             <input type="text" name="email" />
           </label>
-        <div>
         </div>
-          <label>
+        <div className="flex items-center mb-4">
+          <label className="w-1/4" htmlFor="lastname">
             <span>Message</span>
             <textarea name="message" />
           </label>
         </div>
-        <button type="submit" class="bg-gray-200 placeholder-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+        <button type="submit" class="rounded-full bg-blue-200 placeholder-blue-400 text-blue-800 font-bold py-2 px-4 ">
         Submit
         </button>
 
