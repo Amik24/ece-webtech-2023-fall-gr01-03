@@ -17,7 +17,7 @@ export default function Page({
       <h1 className="wt-title">
         {article.title}
       </h1>
-      <p style={{fontStyle: 'italic'}}>This page fetch data at build time, excellent for SEO.</p>
+      <p style={{fontStyle: 'italic'}}>Article found</p>
       <p>
         {article.message}
       </p>

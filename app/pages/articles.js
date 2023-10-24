@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
 
-export default function Page() {
-  const [articles, setArticles] = useState([])
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/articles')
-      const articles = await response.json()
-      setArticles(articles)
-    }
-    fetchData()
-  }, [])
+
+
+export default function Page({ articles }) {
   return (
     <Layout>
       <Head>
@@ -26,7 +17,7 @@ export default function Page() {
       </h1>
       <p className='italic font-bold'>Supposed to get the articles in url or all db if nothing specified</p>
       <ul className='italic font-bold'>
-        {articles.map( article => (
+        {articles.map(article => (
           <li key={article.slug}>
             <h2><Link href={`/articles/${article.slug}`}>{article.title}</Link></h2>
             <p>{article.message}</p>
@@ -35,4 +26,16 @@ export default function Page() {
       </ul>
     </Layout>
   )
+}
+
+
+export async function getStaticProps() {
+  const response = await fetch('http://localhost:3000/api/articles') 
+  const articles = await response.json()
+
+  return {
+    props: {
+      articles: articles
+    }
+  }
 }
