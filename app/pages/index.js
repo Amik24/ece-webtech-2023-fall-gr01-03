@@ -11,7 +11,7 @@ export default function Page() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1 className="wt-title">
-        Welcome to <a href="https://www.adaltas.com">web technologies!</a>
+        Welcome to <a href="https://www.linkedin.com/in/alexandre-bensarsa-aba267267">web technologies!</a>
       </h1>
 
       <ul>
