@@ -8,7 +8,6 @@ Dynamic routing to view individual articles.
 Styling with Tailwind CSS and custom classes.
 Setup and Development
 
-tokken
 
 ## API Endpoints
 /api/articles: Fetches a list of articles.
