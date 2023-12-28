@@ -6,6 +6,7 @@ import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 export default function Page() {
   const [movies, setMovies] = useState([]);
+  const [comments, setComments] = useState([]);
   const [title, setTitle] = useState('');
   const [year, setYear] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -13,7 +14,7 @@ export default function Page() {
   const [comment, setComment] = useState('');
   const router = useRouter();
   const supabase = useSupabaseClient();
-  const user  = useUser(); // This hook provides the authenticated user's information
+  const user = useUser(); 
 
   const fetchMovie = async (title, year) => {
     let apiUrl = `http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=aadb27a`;
@@ -26,8 +27,22 @@ export default function Page() {
 
     if (movieData.Response === "True") {
       setMovies([movieData]);
+      await fetchComments(movieData.imdbID); // Fetch comments whenever a new movie is loaded
     } else {
       setMovies([]);
+    }
+  };
+
+  const fetchComments = async (movieId) => {
+    const { data, error } = await supabase
+      .from('ratings')
+      .select('commentaire, email, rating')
+      .eq('id_film', movieId);
+
+    if (error) {
+      console.error('Error fetching comments:', error);
+    } else {
+      setComments(data);
     }
   };
 
@@ -71,14 +86,14 @@ export default function Page() {
       return;
     }
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('ratings')
       .insert([
         {
-          email: user.email, // user's email from authentication
-          commentaire: comment, // the comment from the form
-          rating: rating, // the rating from the form
-          id_film: movieId, // the movie's ID
+          email: user.email,
+          commentaire: comment,
+          rating: rating,
+          id_film: movieId,
         },
       ]);
 
@@ -89,6 +104,7 @@ export default function Page() {
       setComment('');
       setShowForm(false);
       alert('Rating submitted successfully!');
+      fetchComments(movieId); // Refresh comments after submitting a new one
     }
   };
 
@@ -160,9 +176,20 @@ export default function Page() {
               </button>
             </form>
           )}
+
+          {/* Section to display comments */}
+          {comments.length > 0 && (
+            <div className="comments-section">
+              <h3>Comments</h3>
+              {comments.map((comment, index) => (
+                <div key={index} className="comment">
+                  <p><strong>{comment.email}</strong>: {comment.commentaire} - Rating: {comment.rating}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ))}
-      {user && <p>Email: {user.email}</p>}
     </Layout>
   );
 }
