@@ -2,12 +2,17 @@ import { useRouter } from 'next/router';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import Layout from '../../components/Layout.js';
+import md5 from 'md5';
 
 export default function Page() {
   const router = useRouter();
   const supabase = useSupabaseClient();
   const user = useUser();
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  // Gravatar URL
+  const gravatarUrl = user ? `https://www.gravatar.com/avatar/${md5(user.email?.toLowerCase())}?d=identicon` : '';
+
 
   const onClickLogout = async () => {
     await supabase.auth.signOut();
@@ -74,7 +79,12 @@ export default function Page() {
           </div>
         </div>
       )}
-      {user && <p>Email: {user.email}</p>}
+      {user && (
+        <>
+        <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-20 h-20 mr-4" />
+        <p>Email: {user.email}</p>
+        </>
+      )}
     </Layout>
   );
 }

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useUser } from '@supabase/auth-helpers-react';
+import md5 from 'md5';
 
 export default function Header() {
   const user = useUser();
@@ -10,6 +11,9 @@ export default function Header() {
 
   // Toggle dropdown visibility
   const toggleDropdown = () => setIsDropdownVisible((prev) => !prev);
+
+  // Gravatar URL
+  const gravatarUrl = user ? `https://www.gravatar.com/avatar/${md5(user.email?.toLowerCase())}?d=identicon` : '';
 
   return (
     <header className="sticky top-0 z-50 bg-white text-black p-8 flex">
@@ -39,6 +43,7 @@ export default function Header() {
         </li>
         {user ? (
           <li ref={dropdownRef} className="relative">
+            <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-10 h-10 mr-2" />
             <button
               className="rounded px-3 py-2 text-white bg-blue-500 hover:bg-blue-600"
               onClick={toggleDropdown}
