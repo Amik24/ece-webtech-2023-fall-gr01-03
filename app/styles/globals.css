@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* wt stands for Web Tech */
 
 .wt-title {
   @apply text-3xl font-bold underline mb-10;

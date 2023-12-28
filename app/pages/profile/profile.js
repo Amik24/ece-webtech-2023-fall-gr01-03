@@ -1,26 +1,26 @@
 import { useRouter } from 'next/router'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
-import Layout from '../components/Layout.js'
-import { createClient } from '@supabase/supabase-js';//Supabase
+import Layout from '../../components/Layout.js'
 
 export default function Page() {
   const router = useRouter()
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
+  const supabase = useSupabaseClient()
   const user = useUser()
+  
   const onClickLogout = async () => {
     await supabase.auth.signOut()
     router.push('/login')
   }
-
+  
+  // Prepare user data with only email and id
+  const userData = user ? { id: user.id, email: user.email } : null;
+  
   return (
     <Layout
       title="Profile"
       description="User profile page"
-    >
-      <h1 className="wt-title">
+      >
+      <h1 className='wt-title'>
         Profile
       </h1>
       <div className="mb-8">
@@ -31,7 +31,9 @@ export default function Page() {
           Sign out
         </button>
       </div>
-      <pre><code>{JSON.stringify(user, null, 2)}</code></pre>
+      {user && (
+        <p>Email: {user.email}</p>
+      )}
     </Layout>
   )
 }

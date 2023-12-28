@@ -1,20 +1,15 @@
-import React from 'react';
 import Link from 'next/link';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useUser } from '@supabase/auth-helpers-react';
-import { useRouter } from 'next/router';
 
 export default function Header() {
   const user = useUser();
-  const router = useRouter();
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const handleAuthButtonClick = () => {
-    if (user) {
-      router.push('/profile');
-    } else {
-      router.push('/login');
-    }
-  };
+  // Toggle dropdown visibility
+  const toggleDropdown = () => setIsDropdownVisible((prev) => !prev);
 
   return (
     <header className="sticky top-0 z-50 bg-white text-black p-8 flex">
@@ -28,19 +23,57 @@ export default function Header() {
       </div>
       <ul className="list-none m-0 p-0 inline-flex space-x-8">
         <li>
-          <Link href="/articles">Articles</Link>
-        </li>
-        <li> 
-          <Link href="/about">About us</Link>
-        </li>
-        <li>
-          <Link href="/contacts">Contact us</Link>
+          <Link href="/articles">
+            <button className="text-sm font-semibold hover:underline">Articles</button>
+          </Link>
         </li>
         <li>
-          <button onClick={handleAuthButtonClick} className="text-sm font-semibold">
-            {user ? user.email : 'Sign in'}
-          </button>
+          <Link href="/about">
+            <button className="text-sm font-semibold hover:underline">About us</button>
+          </Link>
         </li>
+        <li>
+          <Link href="/contacts">
+            <button className="text-sm font-semibold hover:underline">Contact us</button>
+          </Link>
+        </li>
+        {user ? (
+          <li ref={dropdownRef} className="relative">
+            <button
+              className="rounded px-3 py-2 text-white bg-blue-500 hover:bg-blue-600"
+              onClick={toggleDropdown}
+            >
+              Profile
+            </button>
+            {isDropdownVisible && (
+              <div
+                className="absolute right-0 mt-2 w-48 bg-white shadow-xl z-50"
+                onMouseLeave={() => setIsDropdownVisible(false)}
+              >
+                <ul className="list-none m-0 p-0">
+                  <li className="border-b border-gray-200">
+                    <Link href="/profile/profile">
+                      <button className="block px-4 py-2 hover:bg-gray-100 w-full text-left">My Information</button>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/profile/myreviews">
+                      <button className="block px-4 py-2 hover:bg-gray-100 w-full text-left">My Reviews</button>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </li>
+        ) : (
+          <li>
+            <Link href="/login">
+              <button className="rounded px-3 py-2 text-white bg-blue-500 hover:bg-blue-600">
+                Sign in
+              </button>
+            </Link>
+          </li>
+        )}
       </ul>
     </header>
   );
