@@ -7,6 +7,9 @@ export default function Page() {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState('');
   const [year, setYear] = useState('');
+  const [showForm, setShowForm] = useState(false);
+  const [rating, setRating] = useState('');
+  const [comment, setComment] = useState('');
   const router = useRouter();
 
   // Function to fetch movies
@@ -30,10 +33,8 @@ export default function Page() {
   useEffect(() => {
     if (router.isReady) {
       const { t, y } = router.query;
-
       setTitle(t || '');
       setYear(y || '');
-
       if (t) {
         fetchMovie(t, y);
       }
@@ -51,10 +52,22 @@ export default function Page() {
     }, undefined, { shallow: true });
   };
 
-  // Handle form submission
+  // Handle form submission for movie search
   const handleSubmit = (event) => {
     event.preventDefault();
     updateQueryParams(title, year);
+  };
+
+  // Handle rating and comment form submission
+  const handleRatingSubmit = (event) => {
+    event.preventDefault();
+    // Here, add your logic to handle the rating and comment submission
+    // For now, we'll just log it to the console
+    console.log("Rating:", rating, "Comment:", comment);
+    // Reset the form
+    setRating('');
+    setComment('');
+    setShowForm(false);
   };
 
   return (
@@ -91,6 +104,26 @@ export default function Page() {
             <p>Synopsis: {movie.Plot}</p>
             <p>Length: {movie.Runtime}</p>
             <p>Genres: {movie.Genre}</p>
+
+            <button onClick={() => setShowForm(!showForm)} className="rounded-full bg-blue-200 text-blue-800 font-bold py-2 px-4 mt-4">
+              {showForm ? 'Cancel Rating' : 'Rate This Movie'}
+            </button>
+
+            {showForm && (
+              <form onSubmit={handleRatingSubmit} className="block mt-4">
+                <label htmlFor="rating">
+                  Rating (out of 5)
+                  <input id="rating" type="number" min="0" max="5" name="rating" value={rating} onChange={(e) => setRating(e.target.value)} required />
+                </label>
+                <label htmlFor="comment">
+                  Comment
+                  <textarea id="comment" name="comment" value={comment} onChange={(e) => setComment(e.target.value)} required />
+                </label>
+                <button type="submit" className="rounded-full bg-blue-200 text-blue-800 font-bold py-2 px-4 mt-2">
+                  Submit Rating
+                </button>
+              </form>
+            )}
           </li>
         ))}
       </ul>
