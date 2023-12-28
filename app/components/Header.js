@@ -62,7 +62,7 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/profile/myreviews">
+                    <Link href="/profile/review">
                       <button className="block px-4 py-2 hover:bg-gray-100 w-full text-left">My Reviews</button>
                     </Link>
                   </li>
