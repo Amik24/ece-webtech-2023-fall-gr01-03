@@ -9,7 +9,7 @@ export default function Page() {
   const supabase = useSupabaseClient()
   const user = useUser()
   if(user){
-    router.push('/profile')
+    router.push('/profile/profile')
   }
   return (
     <Layout
