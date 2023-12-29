@@ -55,8 +55,26 @@ export default function MyReviews() {
     if (error) {
       console.error('Error updating review:', error);
     } else {
-      fetchReviews(); // Re-fetch reviews after updating
       setEditingIndex(-1); // Exit editing mode
+      fetchReviews(); // Re-fetch reviews after updating
+    }
+  };
+
+  const handleDelete = async (reviewId) => {
+    if (!confirm('Are you sure you want to delete this review?')) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('ratings')
+      .delete()
+      .eq('id', reviewId);
+
+    if (error) {
+      console.error('Error deleting review:', error);
+    } else {
+      const updatedReviews = reviews.filter((review) => review.id !== reviewId);
+      setReviews(updatedReviews); // Update the reviews state
     }
   };
 
@@ -93,7 +111,8 @@ export default function MyReviews() {
                 <img src={review.movie.Poster} alt={`Poster of ${review.movie.Title}`} />
                 <p>Rating: {review.rating}</p>
                 <p>Comment: {review.commentaire}</p>
-                <button onClick={() => handleEdit(review, index)}>Edit Comment</button>
+                <button onClick={() => handleEdit(review, index)}>Edit Comment</button><br></br>
+                <button onClick={() => handleDelete(review.id)}>Delete Comment</button>
               </div>
             )}
           </li>
