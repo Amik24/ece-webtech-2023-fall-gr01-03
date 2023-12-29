@@ -62,7 +62,7 @@ export default function Page() {
     if (newTitle) query.t = newTitle;
     if (newYear) query.y = newYear;
     router.push({
-      pathname: '/articles',
+      pathname: '/movies',
       query: query,
     }, undefined, { shallow: true });
   };
@@ -115,63 +115,76 @@ export default function Page() {
         <meta name="description" content="Search for movie information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="wt-title">Movie Search</h1>
+      <h1 className="text-3xl font-semibold text-center mt-8 mb-6 text-gray-800">
+        Movie Search
+      </h1>
 
-      <form onSubmit={handleSubmit} className="search-form">
+      <form onSubmit={handleSubmit} className="flex justify-center mb-6">
         <input
           type="text"
           placeholder="Movie Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          className="border rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
         <input
           type="text"
           placeholder="Release Year"
           value={year}
           onChange={(e) => setYear(e.target.value)}
+          className="border p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-r-lg p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          Search
+        </button>
       </form>
 
       {movies.map((movie) => (
-        <div key={movie.imdbID} className="movie-details">
-          <h2>{movie.Title} ({movie.Year})</h2>
-          <img src={movie.Poster} alt={`Poster of ${movie.Title}`} />
-          <p>Release Date: {movie.Released}</p>
-          <p>Synopsis: {movie.Plot}</p>
-          <p>Length: {movie.Runtime}</p>
-          <p>Genres: {movie.Genre}</p>
+        <div key={movie.imdbID} className="movie-details border rounded-lg p-4 shadow-md">
+          <h2 className="text-3xl font-semibold">{movie.Title} ({movie.Year})</h2>
+          <img src={movie.Poster} alt={`Poster of ${movie.Title}`} className="mt-2 mb-4" />
+          <p><strong>Release Date:</strong> {movie.Released}</p>
+          <p><strong>Synopsis:</strong> {movie.Plot}</p>
+          <p><strong>Length:</strong> {movie.Runtime}</p>
+          <p><strong>Genres:</strong> {movie.Genre}</p>
 
-          <button onClick={() => setShowForm(!showForm)} className="rate-movie-button">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 mt-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          >
             {showForm ? 'Cancel Rating' : 'Rate This Movie'}
           </button>
 
           {showForm && (
-            <form onSubmit={handleRatingSubmit} className="rating-form">
-              <label htmlFor="rating">
-                Rating (out of 5)
-                <input
-                  id="rating"
-                  type="number"
-                  min="0"
-                  max="5"
-                  name="rating"
-                  value={rating}
-                  onChange={(e) => setRating(e.target.value)}
-                  required
-                />
-              </label>
-              <label htmlFor="comment">
-                Comment
-                <textarea
-                  id="comment"
-                  name="comment"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  required
-                />
-              </label>
-              <button type="submit" className="submit-rating-button">
+            <form onSubmit={handleRatingSubmit} className="mt-4">
+              <label htmlFor="rating" className="block font-semibold">Rating (out of 5)</label>
+              <input
+                id="rating"
+                type="number"
+                min="0"
+                max="5"
+                name="rating"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                required
+                className="border p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 rounded-lg"
+              />
+              <label htmlFor="comment" className="block font-semibold mt-2">Comment</label>
+              <textarea
+                id="comment"
+                name="comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                required
+                className="border p-2 focus:outline-none focus:ring-2 focus:ring-yellow-500 rounded-lg"
+              />
+              <button
+                type="submit"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 mt-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              >
                 Submit Rating
               </button>
             </form>
@@ -179,15 +192,19 @@ export default function Page() {
 
           {/* Section to display comments */}
           {comments.length > 0 && (
-            <div className="comments-section">
-              <h3>Comments</h3>
-              {comments.map((comment, index) => (
-                <div key={index} className="comment">
-                  <p><strong>{comment.email}</strong>: {comment.commentaire} - Rating: {comment.rating}</p>
-                </div>
-              ))}
-            </div>
-          )}
+  <div className="comments-section mt-4">
+    <h3 className="text-lg font-semibold mb-2">Comments :</h3>
+    {comments.map((comment, index) => (
+      <div
+        key={index}
+        className="comment border rounded-lg p-2 bg-gray-200 mt-2"
+      >
+        <p><strong>{comment.email}</strong>: {comment.commentaire} - Rating: {comment.rating}/5</p>
+      </div>
+    ))}
+  </div>
+)}
+
         </div>
       ))}
     </Layout>
