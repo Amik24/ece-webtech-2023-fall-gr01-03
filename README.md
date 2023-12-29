@@ -24,7 +24,7 @@ Follow these steps to set up the Movie Rating Website on your local machine:
 1. Clone the GitHub repository:
 
    ```bash
-   git clone https://github.com/your-username/movie-rating-website.git
+   git clone https://github.com/JulianoLeperso/ece-webtech-2023-fall-gr01-03.git
 
 2. Instal Node.js
     ```bash
