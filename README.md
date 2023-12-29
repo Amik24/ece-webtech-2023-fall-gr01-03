@@ -92,10 +92,11 @@ Follow these steps to set up the Movie Rating Website on your local machine:
 * **Comment creation and display**
   * Grade: *4/4*
   * Comments: *The user can make a comment/request to the website using it's email adress first name and last name and is then accessible as all your other comments for you and the admin on your profile*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Task feedback: *We started by this contacts form to use db so it was a great task to train on how to use databse and databse oauth and RLS*
 * **Post modification and removal**
   * Grade: *4/4*
-  * Comments: *Every can remove or edit each of it's rating and comments post on each film in it's reviexs section and it will be applied to the database and therefore be persistent*
+  * Comments: *Every authenticated user can remove or edit each of it's rating and comments post on each film in it's reviews section and it will be applied to the database and therefore be persistent*
+  * Task feedback: *Using supabase db to train to delete, edit, ... and make those types of queries was great.*
 * **Search**
   * Grade: *6/6*
   * Comments: *We incorporated a search engige through a movie database on the server side using an external API as movie database, working with an environnement key*
@@ -106,12 +107,12 @@ Follow these steps to set up the Movie Rating Website on your local machine:
   * Task feedback: *Easy access and implementation*
 * **Resource access control**
   * Grade: *6/6*
-  * Comments: *Every table and interraction between tbale and the website is secured with RLS*     !!!!!!!!!!!!!!!!!!!
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Comments: *Every table and interraction between tbale and the website is secured with RLS. IN fact, we configured all the requirements for the three databases we are using.For example, only an authenticated user can write reviews under movies. If not, there is an appropriate HTTP response code and message*     
+  * Task feedback: *Fpretty hard to handle and to understand at first, because it caused a lot of troubles and bugs. But when we know how to use it, it is very helpful and facilitate the code because.*
 * **Account settings**
-  * Grade: *3/4*                                                                                       !!!!!!!!!!!!!!!!!!
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *3/4*     
+  * Comments: *At first, nobody is logged in? If a user logs in using github or his email address (oauth), a user is created in the authentication table in supabase. Once he is logged, you can see his profile infos (email, phone number, ...)or an other page with his reviews that he can manages. He can log out from his profile infos page and see all the comments from the contact us page he has done. However, the button delete account is not working because we did not manage to configure properly the deletion of a user from the authenticate table in supabase.*
+  * Task feedback: *great to handle but the concept of oauth and the authenticate table in supabase is really hard to understand and handle. For example, to understand the concept of twilio token for phone number is not usual and evident. But really instructive ! We really learnt a lot from there.*
 * **WYSIWYG integration**
   * Grade: *2/2*
   * Comments: *The user see how he will impact the page in real time and when applied it instantly appear at the place the user saw it ( for the posts and ratings)*
@@ -126,15 +127,15 @@ Follow these steps to set up the Movie Rating Website on your local machine:
 ### Bonus Tasks
 
 * ***Admin dashboard***   
-  * Comments: *Complete admin dashboard, the admin can access all the contact comments from all the people, he can also remove every post under any film when connected with it's admin account*
+  * Comments: *Complete admin dashboard, the admin can access all the contact comments from all the people where an authenticated user can only see his comments done in the contact form. He can also remove every post under any film when connected with it's admin account, in his reviews page in his profile.*
 * ***Watchlist for users***   
-  * Comments: *We implementde a watchlist for all user to make sure to remember the film they want to see or rate that is only accessible by them and can be modified as wished*
+  * Comments: *We implementde a watchlist for all user to make sure to remember the film they want to see or rate that is only accessible by them and can be modified as wished. It means that there is another db that uses the id of films and email of users. If a user likes a movie after searching for it or clicking it from the home page, he can clicks on a button that will add to his watchlist (controlled by RLS to not put twice the same film for a unique user.). This my watchlist button in the header only display when a user is connected.*
 
 ## Miscellaneous
 
 ### Course Feedback
 
-*About this class, we loved the teamworking environnement, the way that the labs were evaluated every week. It allowed us to be guided more easily by asking us rigor, granting us a regular and linear progression. However one negative point would be that the vercel deployment wasn't explained enough wich made it hard to really understand what were the problem when there was some. It was also really interresting to learn and discorver lots of languages and modules that we could use for web developpement*
+*About this class, we loved the teamworking environnement, the way that the labs were evaluated every week. It allowed us to be guided more easily by asking us rigor, granting us a regular and linear progression. However one negative point would be that the vercel deployment wasn't explained enough wich made it hard to really understand what were the problems when there was some. It was also really interresting to learn and discorver lots of languages and modules that we could use for web developpement.*
 
 ### Project Reuse
 
