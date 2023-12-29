@@ -2,11 +2,15 @@
 // pages/api/omdb.js
 
 export default async function handler(req, res) {
-    const { t: title, y: year } = req.query;
-    const omdbApiKey = process.env.OMDB_API_KEY; // Ensure this is set in your environment variables
-  
-    // Construct the OMDB API URL
-    const url = `http://www.omdbapi.com/?t=${encodeURIComponent(title)}&y=${encodeURIComponent(year)}&apikey=${omdbApiKey}`;
+    const { t: title, y: year, i: imdbId } = req.query;
+  const omdbApiKey = process.env.OMDB_API_KEY;
+
+  let url = `http://www.omdbapi.com/?apikey=${omdbApiKey}`;
+  if (imdbId) {
+    url += `&i=${encodeURIComponent(imdbId)}`;
+  } else {
+    url += `&t=${encodeURIComponent(title)}&y=${encodeURIComponent(year)}`;
+  }
   
     console.log(url); // Log the constructed URL
     try {

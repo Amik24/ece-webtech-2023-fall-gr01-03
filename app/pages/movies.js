@@ -17,7 +17,8 @@ export default function Page() {
   const user = useUser(); 
 
   const fetchMovie = async (title, year) => {
-    const response = await fetch(`/api/omdb?title=${encodeURIComponent(title)}&year=${encodeURIComponent(year)}`);
+    console.log(`Title: ${title}, Year: ${year}`); // Log the title and year
+    const response = await fetch(`/api/omdb?t=${encodeURIComponent(title)}&y=${encodeURIComponent(year)}`);
     const movieData = await response.json();
 
     if (response.ok) {

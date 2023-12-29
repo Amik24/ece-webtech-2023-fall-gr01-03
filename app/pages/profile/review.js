@@ -17,33 +17,35 @@ export default function MyReviews() {
   }, [user]);
 
   const fetchReviews = async () => {
-    let query = supabase
-    .from('ratings')
-    .select('id, commentaire, rating, id_film');
-
-  // Check if the user is the admin to decide which rows to select
+    let query = supabase.from('ratings').select('id, commentaire, rating, id_film');
+  
     if (user.email !== 'alexandre.bensarsa@jeece.fr') {
       query = query.eq('email', user.email);
     }
-
+  
     const { data: reviewsData, error } = await query;
-
+  
     if (error) {
       console.error('Error fetching reviews:', error);
       return;
     }
-    const movieDetailsPromises = reviewsData.map((review) =>
-      fetch(`http://www.omdbapi.com/?i=${review.id_film}&apikey=aadb27a`).then((res) => res.json())
-    );
+  
+    // Fetch movie details from your internal API
+    const movieDetailsPromises = reviewsData.map((review) => {
+      console.log(`Fetching details for ID: ${review.id_film}`); // Log the IMDb ID
+      return fetch(`/api/omdb?i=${review.id_film}`).then((res) => res.json());
+    });
+  
     const moviesDetails = await Promise.all(movieDetailsPromises);
-
+  
     const reviewsWithMovies = reviewsData.map((review, index) => ({
       ...review,
       movie: moviesDetails[index],
     }));
-
+  
     setReviews(reviewsWithMovies);
   };
+  
 
   const handleEdit = (review, index) => {
     setEditingIndex(index);
