@@ -42,6 +42,25 @@ export default function Page() {
     }
   };
 
+  const addToWatchlist = async (movieId) => {
+    if (!user) {
+      alert('You must be logged in to add to your watchlist.');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('watchlist')
+      .insert([
+        { email: user.email, id_film: movieId },
+      ]);
+
+    if (error) {
+      alert(`Error adding to watchlist: ${error.message}`);
+    } else {
+      alert('Movie added to watchlist successfully!');
+    }
+  };
+
   useEffect(() => {
     if (router.isReady) {
       const { t, y } = router.query;
@@ -69,12 +88,14 @@ export default function Page() {
     updateQueryParams(title, year);
   };
 
+
   const handleRatingSubmit = async (event) => {
     event.preventDefault();
     if (!user) {
       alert('You must be logged in to submit a rating.');
       return;
     }
+
 
     const movieId = movies.length > 0 ? movies[0].imdbID : null;
     if (!movieId) {
@@ -140,6 +161,10 @@ export default function Page() {
 
       {movies.map((movie) => (
         <div key={movie.imdbID} className="movie-details border rounded-lg p-4 shadow-md">
+          <h2 className="text-xl font-bold"></h2>
+          <button onClick={() => addToWatchlist(movie.imdbID)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add to Watchlist
+          </button>
           <h2 className="text-3xl font-semibold">{movie.Title} ({movie.Year})</h2>
           <img src={movie.Poster} alt={`Poster of ${movie.Title}`} className="mt-2 mb-4" />
           <p><strong>Release Date:</strong> {movie.Released}</p>

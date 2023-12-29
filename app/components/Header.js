@@ -24,31 +24,38 @@ export default function Header() {
     }
   }, [darkMode]);
 
-  const gravatarUrl = user ? `https://www.gravatar.com/avatar/${md5(user.email?.toLowerCase())}?d=identicon` : '';
-
   const toggleDropdown = () => setIsDropdownVisible((prev) => !prev);
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
+  const gravatarUrl = user ? `https://www.gravatar.com/avatar/${md5(user.email?.toLowerCase())}?d=identicon` : '';
+
   return (
     <header className={`sticky top-0 z-50 py-4 px-8 flex justify-between items-center ${darkMode ? 'bg-gray-900' : 'bg-gray-800'} text-white`}>
-      <Link href="/" passHref>
-        <span className="flex items-center space-x-2 cursor-pointer">
-          <Image src="/ECE_LOGO_2021_web.png" alt="ECE Logo" width={150} height={50} priority />
-          <span className="font-semibold text-xl">Web Technologies</span>
-        </span>
-      </Link>
-      <nav className="flex items-center space-x-4">
-        <Link href="/movies" passHref>
+      <div className="flex items-center space-x-4">
+        <Link href="/">
+          <span className="flex items-center space-x-2 cursor-pointer">
+            <Image src="/ECE_LOGO_2021_web.png" alt="ECE Logo" width={150} height={50} priority />
+            <span className="font-semibold text-xl">Web Technologies</span>
+          </span>
+        </Link>
+        {user && (
+          <Link href="/watchlist">
+            <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">My Watchlist</span>
+          </Link>
+        )}
+        <Link href="/movies">
           <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">Movies</span>
         </Link>
-        <Link href="/about" passHref>
+        <Link href="/about">
           <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">About Us</span>
         </Link>
-        <Link href="/contacts" passHref>
+        <Link href="/contacts">
           <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">Contact Us</span>
         </Link>
+      </div>
+      <div className="flex items-center space-x-4">
         {user ? (
-          <div className="relative flex items-center space-x-2">
+          <>
             <button onClick={toggleDropdown} className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300">
               Profile
             </button>
@@ -56,33 +63,29 @@ export default function Header() {
               <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 shadow-lg rounded z-50" onMouseLeave={() => setIsDropdownVisible(false)}>
                 <ul className="list-none m-0 p-0">
                   <li className="border-b border-gray-400">
-                    <Link href="/profile/profile" passHref>
+                    <Link href="/profile/profile">
                       <span className="block px-4 py-2 hover:bg-gray-300 w-full text-left cursor-pointer">My Information</span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/profile/review" passHref>
+                    <Link href="/profile/review">
                       <span className="block px-4 py-2 hover:bg-gray-300 w-full text-left cursor-pointer">My Reviews</span>
                     </Link>
                   </li>
                 </ul>
               </div>
             )}
-            <Link href="/profile/profile" passHref>
-              <span>
-                <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-12 h-12" />
-              </span>
-            </Link>
-          </div>
+            <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-12 h-12" />
+          </>
         ) : (
-          <Link href="/login" passHref>
+          <Link href="/login">
             <span className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300 cursor-pointer">Sign In</span>
           </Link>
         )}
-      </nav>
-      <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300 cursor-pointer">
-        {darkMode ? 'Light Mode' : 'Dark Mode'}
-      </button>
+        <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300 cursor-pointer">
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
+      </div>
     </header>
   );
 }
