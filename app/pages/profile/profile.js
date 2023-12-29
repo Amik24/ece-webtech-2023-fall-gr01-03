@@ -83,6 +83,7 @@ export default function Page() {
         <>
         <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-20 h-20 mr-4" />
         <p>Email: {user.email}</p>
+        <p>Last Sign In: {new Date(user.amr[0].timestamp * 1000).toLocaleString()}</p>
         </>
       )}
     </Layout>

@@ -102,7 +102,7 @@ export default function MyReviews() {
                   value={editRating}
                   onChange={(e) => setEditRating(e.target.value)}
                 />
-                <button onClick={() => handleUpdate(review.id)}>Update</button>
+                <button onClick={() => handleUpdate(review.id)}>Update</button><br></br>
                 <button onClick={cancelEdit}>Cancel</button>
               </div>
             ) : (
