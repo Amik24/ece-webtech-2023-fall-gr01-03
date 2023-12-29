@@ -83,11 +83,8 @@ const MovieCarousel = () => {
           {movies.map((movie, index) => (
             <div key={index} className="p-4 flex border border-black rounded-lg movie-slide">
               <div className="w-1/4">
-                <img
-                  src={movie.Poster}
-                  alt={`Poster of ${movie.Title}`}
-                  className="w-full h-auto object-cover rounded-lg shadow-lg"
-                />
+              <img src={movie.Poster} alt={`Poster of ${movie.Title}`} className="w-full h-auto object-cover rounded-lg shadow-lg" onClick={() => (window.location.href = `https://ece-webtech-2023-fall-gr01-03-5xk48avlk.vercel.app/movies?t=${encodeURIComponent(movie.Title)}`)}
+  style={{ cursor: "pointer" }}/>
               </div>
               <div className="w-3/4 ml-4">
                 <h3 className="text-2xl font-semibold text-yellow-500">{movie.Title} ({movie.Year})</h3>
