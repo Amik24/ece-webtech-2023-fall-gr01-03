@@ -5,19 +5,19 @@ import Image from 'next/image';
 const TeamMembers = [
   {
     name: 'Alexandre Bensarsa',
-    role: 'Web Developer',
+    role: 'Developer',
     imageUrl: 'alex.jpeg', // Replace with your image URLs
     linkedinUrl: 'https://www.linkedin.com/in/alexandre-bensarsa-aba267267/',
   },
   {
     name: 'Clement Gasnet',
-    role: 'Front-end Developer',
+    role: 'Developer',
     imageUrl: 'clem.jpeg', // Replace with your image URLs
     linkedinUrl: 'https://www.linkedin.com/in/cl%C3%A9ment-gasnet-6b11b7297/',
   },
   {
     name: 'Ikram Amine',
-    role: 'Back-end Developer',
+    role: 'Developer',
     imageUrl: 'ikram.jpg', // Replace with your image URLs
     linkedinUrl: 'https://fr.linkedin.com/in/ikram-amine-48244921a',
   },
