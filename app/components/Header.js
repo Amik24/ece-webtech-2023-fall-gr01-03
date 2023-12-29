@@ -83,7 +83,7 @@ export default function Header() {
           </Link>
         )}
         <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-6 py-4 hover:bg-yellow-500 transition duration-300 cursor-pointer">
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        {darkMode ? '🌙' : '☀️'}
         </button>
       </div>
     </header>
