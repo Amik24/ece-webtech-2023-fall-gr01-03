@@ -17,16 +17,21 @@ export default function MyReviews() {
   }, [user]);
 
   const fetchReviews = async () => {
-    const { data: reviewsData, error } = await supabase
-      .from('ratings')
-      .select('id, commentaire, rating, id_film')
-      .eq('email', user.email);
+    let query = supabase
+    .from('ratings')
+    .select('id, commentaire, rating, id_film');
+
+  // Check if the user is the admin to decide which rows to select
+    if (user.email !== 'alexandre.bensarsa@jeece.fr') {
+      query = query.eq('email', user.email);
+    }
+
+    const { data: reviewsData, error } = await query;
 
     if (error) {
       console.error('Error fetching reviews:', error);
       return;
     }
-
     const movieDetailsPromises = reviewsData.map((review) =>
       fetch(`http://www.omdbapi.com/?i=${review.id_film}&apikey=aadb27a`).then((res) => res.json())
     );
