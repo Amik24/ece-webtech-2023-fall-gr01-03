@@ -30,7 +30,7 @@ Follow these steps to set up the Movie Rating Website on your local machine:
     ```bash
     npm install
 
-3. Create and enter into a .env.local file insipe the app folder the environnement keys as follow:
+3. Create and enter into a .env.local file insipe the app folder the environnement keys as follow: Feel free to contact us to get the supabase team project invite, we sent them to you but they might have expire
 
     ```bash
     NEXT_PUBLIC_SUPABASE_URL= https://lggtnepnxoddkoxrgufh.supabase.co
