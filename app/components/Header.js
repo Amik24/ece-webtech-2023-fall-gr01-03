@@ -34,33 +34,33 @@ export default function Header() {
       <div className="flex items-center space-x-4">
         <Link href="/">
           <span className="flex items-center space-x-2 cursor-pointer">
-            <Image src="/ECE_LOGO_2021_web.png" alt="ECE Logo" width={150} height={50} priority />
-            <span className="font-semibold text-xl">Web Technologies</span>
+            <Image src="/logo.png" alt="ECE Logo" width={150} height={50} priority />
+            <span className="font-semibold text-3xl">Web Technologies</span>
           </span>
         </Link>
         {user && (
           <Link href="/watchlist">
-            <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">My Watchlist</span>
+            <span className="text-base font-semibold hover:text-yellow-500 cursor-pointer">My Watchlist</span>
           </Link>
         )}
         <Link href="/movies">
-          <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">Movies</span>
+          <span className="text-base font-semibold hover:text-yellow-500 cursor-pointer">Movies</span>
         </Link>
         <Link href="/about">
-          <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">About Us</span>
+          <span className="text-base font-semibold hover:text-yellow-500 cursor-pointer">About Us</span>
         </Link>
         <Link href="/contacts">
-          <span className="text-sm font-semibold hover:text-yellow-500 cursor-pointer">Contact Us</span>
+          <span className="text-base font-semibold hover:text-yellow-500 cursor-pointer">Contact Us</span>
         </Link>
       </div>
       <div className="flex items-center space-x-4">
         {user ? (
           <>
-            <button onClick={toggleDropdown} className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300">
+            <button onClick={toggleDropdown} className="rounded-full border-2 border-white px-6 py-4 hover:bg-yellow-500 transition duration-300">
               Profile
             </button>
             {isDropdownVisible && (
-              <div className="absolute right-0 mt-2 w-48 bg-white text-gray-800 shadow-lg rounded z-50" onMouseLeave={() => setIsDropdownVisible(false)}>
+              <div className="absolute right-0 mt-2 w-52 bg-white text-gray-800 shadow-lg rounded z-50" onMouseLeave={() => setIsDropdownVisible(false)}>
                 <ul className="list-none m-0 p-0">
                   <li className="border-b border-gray-400">
                     <Link href="/profile/profile">
@@ -75,14 +75,14 @@ export default function Header() {
                 </ul>
               </div>
             )}
-            <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-12 h-12" />
+            <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-16 h-16" />
           </>
         ) : (
           <Link href="/login">
-            <span className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300 cursor-pointer">Sign In</span>
+            <span className="rounded-full border-2 border-white px-6 py-4 hover:bg-yellow-500 transition duration-300 cursor-pointer">Sign In</span>
           </Link>
         )}
-        <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-3 py-2 hover:bg-yellow-500 transition duration-300 cursor-pointer">
+        <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-6 py-4 hover:bg-yellow-500 transition duration-300 cursor-pointer">
           {darkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </div>
