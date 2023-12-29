@@ -9,6 +9,8 @@ export default function Page() {
   const supabase = useSupabaseClient();
   const user = useUser();
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(user?.phone || '');
+  const [editingPhone, setEditingPhone] = useState(false);
 
   // Gravatar URL
   const gravatarUrl = user ? `https://www.gravatar.com/avatar/${md5(user.email?.toLowerCase())}?d=identicon` : '';
@@ -54,6 +56,19 @@ export default function Page() {
     router.push('/admin/contacts'); // Adjust according to your route
   };
 
+  const handlePhoneUpdate = async () => {
+    const { data, error } = await supabase.auth.updateUser({
+      phone: phoneNumber,
+    });
+
+    if (error) {
+      alert('Error updating phone number: ' + error.message);
+    } else {
+      alert('Phone number updated successfully');
+      setEditingPhone(false);
+    }
+  };
+
   return (
     <Layout title="Profile" description="User profile page">
       <h1 className='wt-title'>Profile</h1>
@@ -84,6 +99,27 @@ export default function Page() {
         <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-20 h-20 mr-4" />
         <p>Email: {user.email}</p>
         <p>Last Sign In: {new Date(user.amr[0].timestamp * 1000).toLocaleString()}</p>
+        <div>
+            {editingPhone ? (
+              <form onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="tel"
+                  placeholder="Enter your phone number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+                <button type="button" onClick={handlePhoneUpdate}>Save Phone Number</button>
+                <button type="button" onClick={() => setEditingPhone(false)}>Cancel</button>
+              </form>
+            ) : (
+              <>
+                <p>Phone: {user.phone || 'Not provided'}</p>
+                <button onClick={() => setEditingPhone(true)}>
+                  {user.phone ? 'Change Phone Number' : 'Insert a Phone Number'}
+                </button>
+              </>
+            )}
+          </div>
         </>
       )}
     </Layout>
