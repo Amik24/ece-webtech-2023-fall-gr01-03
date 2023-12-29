@@ -81,65 +81,59 @@ Follow these steps to set up the Movie Rating Website on your local machine:
   * Grade: *2/2*
   * Comments: *Clear button on a navigation bar located in the header to access all usefull pages*
 * **Login and profile page**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *4/4*
+  * Comments: *Provide a login/logout button in the header. On login, open the login page with a signin/signup form with GitHub provider using Auth component of Supabase. Persist authenticated user information in React context and display it on the profile page and the header.*
 * **Post creation and display**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *6/6*
+  * Comments: *Every authenticated user can post on the website, edit it's post and remove them, every post persist en the database after deconnection, the user can see all it's post and the post are also displayed when the movie posted on is searched with all post of other users related*
+  * Task feedback: *Lot's of query and database handling, especially hard for vercel deployment to fix all the little issues*
 * **Comment creation and display**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
+  * Grade: *4/4*
+  * Comments: *The user can make a comment/request to the website using it's email adress first name and last name and is then accessible as all your other comments for you and the admin on your profile*
   * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
 * **Post modification and removal**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *4/4*
+  * Comments: *Every can remove or edit each of it's rating and comments post on each film in it's reviexs section and it will be applied to the database and therefore be persistent*
 * **Search**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *6/6*
+  * Comments: *We incorporated a search engige through a movie database on the server side using an external API as movie database, working with an environnement key*
+  * Task feedback: *Once you get the way this API work and what it precisly return to the server it was pretty easy to implement the search*
 * **Use an external API**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *2/2*
+  * Comments: *We use OMDB API to manage our film database and have all the information updated*
+  * Task feedback: *Easy access and implementation*
 * **Resource access control**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
+  * Grade: *6/6*
+  * Comments: *Every table and interraction between tbale and the website is secured with RLS*     !!!!!!!!!!!!!!!!!!!
   * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
 * **Account settings**
-  * Grade: *How many points you think you deserve*
+  * Grade: *3/4*                                                                                       !!!!!!!!!!!!!!!!!!
   * Comments: *How did you implement the task*
   * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
 * **WYSIWYG integration**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *2/2*
+  * Comments: *The user see how he will impact the page in real time and when applied it instantly appear at the place the user saw it ( for the posts and ratings)*
 * **Gravatar integration**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *2/2*
+  * Comments: *Gravatar is linked with the email adress of connection ( does not show when not connected), if the person has an existing account it displays it on the top right corner and if not, it displays a random one*
 * **Light/dark mode**
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-  * Task feedback: *Facultative, how did you find the task (difficulty, pertinence...)*
+  * Grade: *1/2*
+  * Comments: *Ligh and dark mode only on the header part and not the whole site*
+  * Task feedback: *tried to do this last task but failed to generalize it to the global css*
 
 ### Bonus Tasks
 
-* ***Task title 1***   
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
-* ***Task title 2***   
-  * Grade: *How many points you think you deserve*
-  * Comments: *How did you implement the task*
+* ***Admin dashboard***   
+  * Comments: *Complete admin dashboard, the admin can access all the contact comments from all the people, he can also remove every post under any film when connected with it's admin account*
+* ***Watchlist for users***   
+  * Comments: *We implementde a watchlist for all user to make sure to remember the film they want to see or rate that is only accessible by them and can be modified as wished*
 
 ## Miscellaneous
 
 ### Course Feedback
 
-*Your feedback about the course, what you liked, what you disliked, what you missed...*
+*About this class, we loved the teamworking environnement, the way that the labs were evaluated every week. It allowed us to be guided more easily by asking us rigor, granting us a regular and linear progression. However one negative point would be that the vercel deployment wasn't explained enough wich made it hard to really understand what were the problem when there was some. It was also really interresting to learn and discorver lots of languages and modules that we could use for web developpement*
 
 ### Project Reuse
 
-- [ ] We authorize the professors to use our project as an example for the next year students (facultative).
+- [x] We authorize the professors to use our project as an example for the next year students (facultative).
