@@ -78,6 +78,7 @@ const MovieCarousel = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="max-w-screen-lg mx-auto bg-gray-200 p-4 rounded-lg relative">
+      <h2 className="text-center text-3xl font-semibold text-black-500 mb-6">Featured Movies</h2>
         <Slider {...settings}>
           {movies.map((movie, index) => (
             <div key={index} className="p-4 flex border border-black rounded-lg movie-slide">
