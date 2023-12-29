@@ -73,7 +73,7 @@ const MovieCarousel = () => {
   return (
     <Layout>
       <Head>
-        <title>Movie Carousel</title>
+        <title>MovieAlloRottenIMDBTime</title>
         <meta name="description" content="Browse movie information" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

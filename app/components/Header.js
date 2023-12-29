@@ -35,7 +35,7 @@ export default function Header() {
         <Link href="/">
           <span className="flex items-center space-x-2 cursor-pointer">
             <Image src="/logo.png" alt="ECE Logo" width={150} height={50} priority />
-            <span className="font-semibold text-3xl">MovieAlloRottenIMDBTime</span>
+            <span className="font-semibold text-3xl">IWatched'IT</span>
           </span>
         </Link>
         {user && (
