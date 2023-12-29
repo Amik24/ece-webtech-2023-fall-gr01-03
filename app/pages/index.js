@@ -44,17 +44,19 @@ const MovieCarousel = () => {
       const fetchedMovies = [];
 
       for (const movie of shuffledMovies) {
-        const response = await fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(movie.title)}&y=${encodeURIComponent(movie.year)}&apikey=aadb27a`);
+        const response = await fetch(`/api/omdb?t=${encodeURIComponent(movie.title)}&y=${encodeURIComponent(movie.year)}`);
         const data = await response.json();
 
+        console.log(data); // Add this line to log the movie data
+    
         if (data.Response === "True") {
           fetchedMovies.push(data);
         }
       }
-
+    
       setMovies(fetchedMovies);
     };
-
+    
     fetchMovies();
   }, []);
 

@@ -17,19 +17,14 @@ export default function Page() {
   const user = useUser(); 
 
   const fetchMovie = async (title, year) => {
-    let apiUrl = `http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=aadb27a`;
-    if (year) {
-      apiUrl += `&y=${encodeURIComponent(year)}`;
-    }
-
-    const response = await fetch(apiUrl);
+    const response = await fetch(`/api/omdb?title=${encodeURIComponent(title)}&year=${encodeURIComponent(year)}`);
     const movieData = await response.json();
 
-    if (movieData.Response === "True") {
+    if (response.ok) {
       setMovies([movieData]);
-      await fetchComments(movieData.imdbID); // Fetch comments whenever a new movie is loaded
     } else {
       setMovies([]);
+      // Handle errors appropriately
     }
   };
 
