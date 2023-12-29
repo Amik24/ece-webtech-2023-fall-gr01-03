@@ -7,6 +7,8 @@ Welcome to our Movie Rating Website project! This application is designed to all
 
 Our Movie Rating Website offers a comprehensive platform for movie lovers. Whether you're looking for the latest blockbuster, a classic gem, or a hidden indie gem, our platform provides you with a space to explore, rate, and review movies. You can connect with other users, engage in discussions through film rating and commenting, and stay updated on the latest film releases, with a possibility to add films and series to a watchlist to remember on your next movie night.
 
+!! You will see on the commit history that Ikram did not commited anything for this project, it is however normal. Her PC died and with it her access to the Github repository from her computer. She wasn't able to get it fix before the end of the project. However, she did send us lots of code on another pc ( no github access without her ID keys) related to the css optimization and changes and css related features Gravatar/Light and dark mode and home page display between others. It was a bit more tricky to work like this but we figured it out, and wanted to make sure that her work would be properly considered and not overlooked because of the commit issue. !!
+
 ## Prerequisites
 
 Before you get started, make sure you have the following prerequisites if you want to run the website on your machine:
