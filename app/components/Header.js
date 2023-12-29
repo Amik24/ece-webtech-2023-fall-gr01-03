@@ -35,7 +35,7 @@ export default function Header() {
         <Link href="/">
           <span className="flex items-center space-x-2 cursor-pointer">
             <Image src="/logo.png" alt="ECE Logo" width={150} height={50} priority />
-            <span className="font-semibold text-3xl">IWatched'IT</span>
+            <span className="font-semibold text-3xl">IWatched&apos;IT</span>
           </span>
         </Link>
         {user && (
@@ -83,7 +83,7 @@ export default function Header() {
           </Link>
         )}
         <button onClick={toggleDarkMode} className="rounded-full border-2 border-white px-6 py-4 hover:bg-yellow-500 transition duration-300 cursor-pointer">
-        {darkMode ? '🌙' : '☀️'}
+          {darkMode ? "🌙" : "☀️"}
         </button>
       </div>
     </header>
